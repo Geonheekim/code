@@ -16,7 +16,7 @@ int main()
 	
 	priority_queue <long long> q;
 	
-	set <long long> chk; // ÀÚµ¿Á¤·ÄÀÌ µÇ´Â ¹è¿­ (default ¿À¸§Â÷¼ø)  
+	set <long long> chk; // ìë™ì •ë ¬ì´ ë˜ëŠ” ë°°ì—´ (default ì˜¤ë¦„ì°¨ìˆœ)  
 	
 	for (int i = 0; i < n; i++)
 	{
@@ -30,29 +30,29 @@ int main()
 	
 	while (!q.empty())
 	{
-		long long f = -q.top();  q.pop();//f = ·çÆ®°ª top : Å« ¼ø¼­´ë·Î  
+		long long f = -q.top();  q.pop();//f = ë£¨íŠ¸ê°’ top : í° ìˆœì„œëŒ€ë¡œ  
 		
 		// printf("t %lld\n", f);
 		//->ex -2 -3 -5 -7 -> 2 3 5 7 
 		//2 3 4 5 6 7 8 9 10 12 14 15116 18 20 21 24 25 27
-		for (int i = 0; i < n; i++) //n = ¸î°³ ¼Ò¼öÀÎÁö  
+		for (int i = 0; i < n; i++) //n = ëª‡ê°œ ì†Œìˆ˜ì¸ì§€  
 		{
-			long long v = f * p[i]; //v = ·çÆ® * ÀÔ·Â¼Ò¼ö   
+			long long v = f * p[i]; //v = ë£¨íŠ¸ * ì…ë ¥ì†Œìˆ˜   
 			
-			if (chk.find(v) == chk.end())//v¸¦ °¡¸®Å°´Â ¹İº¹ÀÚ ¹İÈ¯  
+			if (chk.find(v) == chk.end())//vë¥¼ ê°€ë¦¬í‚¤ëŠ” ë°˜ë³µì ë°˜í™˜  
 			{
 			
 				//printf("v %lld\n", v);
 				if (max < v) max = v;
 				
-				chk.insert(v); //ÀÚµ¿ Á¤·Ä(Áßº¹ÀÌ µÇµµ »ó°üx -> push´Â ÇÑ¹ø¸¸ µé¾î°¡±â ¶§¹®)  
+				chk.insert(v); //ìë™ ì •ë ¬(ì¤‘ë³µì´ ë˜ë„ ìƒê´€x -> pushëŠ” í•œë²ˆë§Œ ë“¤ì–´ê°€ê¸° ë•Œë¬¸)  
 				q.push(-v);
 			}
 		}
 		
 		++c;
 		
-		if (c == k) //k = ¸î¹øÂ° ¼ıÀÚÀÎÁö  
+		if (c == k) //k = ëª‡ë²ˆì§¸ ìˆ«ìì¸ì§€  
 		{
 			printf("%lld\n", f);
 			break;
@@ -60,196 +60,4 @@ int main()
 	
 	}
 }
-
-/*
-
-#include<iostream>
-#include<queue>
-#include<cstdio>
-
-using namespace std;
-
-int main() {
-	int K, N;
-	int result[101]= {0,};
-	int a;
-	long long v=0; // ÃÖ¼Ò ºñ±³°ª
-	int index = 0;//ÃÖ¼Ò°ªÀÎ °÷
-
-	scanf("%d %d", &K, &N);
-	
-	queue<long long> arr[101];
-	
-	for (int i = 0; i < K; i++)//°¹¼ö 
-	{
-		scanf("%d", &a);
-		arr[i].push(a);   
-		result[i] = a;
-	}
-
-	for (int i = 0; i < N; i++)//ÀÚ¸®¼ö 
-	{
-		// ÃÖ¼Ò°ª ºñ±³ÇØ¼­ ¸ÕÀú º¸³»°í
-		v = 9999999999999999;
-		index = 0;
-		 
-		for (int j = 0; j < K; j++) //°¹¼ö 
-		{
-			
-			long long temp=0;
-			
-			//if (!arr[j].empty())
-			temp = arr[j].front();
-			//else
-			//	temp = 9999999999999999;
-				
-			printf("%lld\n", temp);
-			// ³ª°¥°ª Ã£±â - ÃÖ¼Ò°ª
-
-			if (v > temp) 
-			{
-				v = temp;
-				index = j;
-			} // k °³¼ö ¸¸Å­ µ¹¸é¼­ ÃÖ¼Ò°ª Ã£±â Áï, ÃÖ¼Ò°ªÀ» Æ®¸®ÀÇ ¸Ç À§·Î ¿Ã¸®´Â ´À³¦
-		}
-		printf("\n");
-		//»õ·Î¿î °ª Ãß°¡ÇÏ°í
-		for (int c = 0; c < K; c++) //°¹¼ö
-		{
-			if(c == index)//ÃÖ¼Ò°ªÀÌ¸é »©°í Ãß°¡  
-			{ 
-				arr[c].pop();
-				arr[c].push(v*result[c]);
-			}
-			else if (c > index)//ÃÖ¼Ò°ªÀÌ ¾Æ´Ï¸é ±×³É Ãß°¡  
-				arr[c].push(v*result[c]);
-		
-		}
-	}
-	printf("%lld\n", v);
-	return 0;
-}
-*/
-
-/*
-#include <iostream>
-#include <queue> 
-#include <set> 
-#include <vector> 
-#include <algorithm> 
-#include <cstdio>
-
-
-using namespace std; 
-
-long long data[101]; 
-queue <long long> pq[101];
-
-int main()
-{ 
-	int n, k, a;
- 	long long cmp = 0; // ÃÖ¼Ò ºñ±³°ª
-	int index = 0;//ÃÖ¼Ò°ªÀÎ °÷
-	long long temp=0;
-
-	scanf("%d %d", &n, &k);
-
-	for(int i = 0; i<k;i++)
-	{
-		scanf("%d", &a);
-		pq[i].push(a);   
-		data[i] = a;
-	}
-
-	for(int i = 0; i < n; i++)//ÀÔ·Â 4°³ 
-	{
-		// ÃÖ¼Ò°ª ºñ±³ÇØ¼­ ¸ÕÀú º¸³»°í
-		cmp = 99999;
-		index = 0;
-		
-		for (int j = 0; j < k; j++)//k¹øÂ° ±îÁö  
-		{
-			temp=0;
-			
-			if (!pq[j].empty())//ºñ¾îÀÖÁö ¾Ê´Ù¸é  
-				temp = pq[j].front();
-			else//ºñ¾îÀÖ´Ù¸é  
-				temp = 99999;
-				
-			printf("%lld\n", temp);
-			
-			// ³ª°¥°ª Ã£±â - ÃÖ¼Ò°ª
-			if (cmp > temp) 
-			{
-				cmp = temp;
-				index = j;
-			}
-			// k °³¼ö ¸¸Å­ µ¹¸é¼­ ÃÖ¼Ò°ª Ã£±â Áï, ÃÖ¼Ò°ªÀ» Æ®¸®ÀÇ ¸Ç À§·Î ¿Ã¸®´Â ´À³¦
-		}
-		printf("\n");
-	
-		//»õ·Î¿î °ª Ãß°¡
-		for (int c = 0; c < k; c++)
-		{
-			if (c == index) 
-			{
-			 // ÃÖ¼Ò°ªÀÌ ¸Â´Ù¸é »õ·Î¿î°ª Ãß°¡
-				pq[c].pop();
-				pq[c].push(cmp*result[c]);
-			}
-			else if (c > index)
-				pq[c].push(cmp*result[c]);
-		}
-	}
-	    
-	printf("%lld\n", cmp);
-	return 0;
-}
-*/
-
-
-
-
-/*
-   	set <long long> chk;  
-    
-	for (int i = 0; i < n; i++)
-	{ 
-		scanf("%lld", &p[i]);
-		q.push(-p[i]); 
-	} 
-	
-	sort(p, p + n);
-	
-	ll max = 0; 
-	int c = 0;
-	 
-	while (!q.empty())
-	{
-	   ll f = -q.top(); q.pop();
-	   ++c;
-	   if(c == k)
-	   { 
-		 printf("%lld\n", f);
-		 break;
-	   } 
-		   
-	   for (int i = 0; i < n; i++)
-	 	{
-		    ll v = f * p[i];
-			if (q.size() > (k-c) && max < v)
-			{
-				 break;
-			} 
-	
-			if (chk.find(v) == chk.end())
-			{ 
-			   if (max < v)	max = v;
-			    chk.insert(v);
-				q.push(-v);
-			} 
-		} 
-	}
-	
-	*/
 
